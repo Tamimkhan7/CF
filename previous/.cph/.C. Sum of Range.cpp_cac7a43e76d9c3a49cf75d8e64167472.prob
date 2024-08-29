@@ -1,0 +1,1 @@
+{"name":"Local: C","url":"/home/tamim/Desktop/CF/previous/C. Sum of Range.cpp","tests":[{"id":1724318269277,"input":"4 6\n","output":"15\n10\n5\n"},{"id":1724318276113,"input":"7 1\n","output":"28\n12\n16\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/CF/previous/C. Sum of Range.cpp","group":"local","local":true}
