@@ -7,29 +7,30 @@ using namespace std;
     cout.tie(0);
 typedef long long int ll;
 #define all(x) x.begin(), x.end()
-#define mod 1000000007
+
 void solve()
 {
     int n;
     cin >> n;
-    if (n % 2 == 0)
-        cout << n / 2 << ' ' << n / 2 << '\n';
-    else
+
+    vector<int> divisor;
+    for (int i = 1; i * i <= n; i++)
     {
-        int fl = 0, mx = -1e9 + 7;
-        for (int i = 2; i * i <= n; i++)
+        if (n % i == 0)
         {
-            if (n % i == 0)
-            {
-                mx = max(mx, i);
-                fl = 1;
-            }
+            divisor.push_back(i);
+            if (n / i != i)
+                divisor.push_back(n / i);
         }
-        if (!fl)
-            cout << 1 << ' ' << n - 1 << '\n';
-        else
-            cout << mx << ' ' << n - mx << '\n';
     }
+    sort(all(divisor));
+    divisor.pop_back();
+    // for (auto x : divisor)
+    //     cout << x << ' ';
+    // cout << '\n';
+    int x = divisor[divisor.size() - 1];
+    int y = n - x;
+    cout << max(x, y) << ' ' << min(x, y) << '\n';
 }
 int32_t main()
 {
