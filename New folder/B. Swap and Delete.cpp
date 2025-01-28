@@ -1,56 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ordered_set tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 #define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
-typedef long long int ll;
-#define all(x) x.begin(), x.end()
+#define mem(a, b) memset(a, b, sizeof(a))
+#define show(x) cout << #x << ' ' << x << endl
+#define all(x) (x).begin(), (x).end()
+#define ll int long long
 #define mod 1000000007
-void solve()
-{
 
-    string s, ss;
-    cin >> s;
-    ss = s;
-    int zero = count(all(s), '0');
-    int one = count(all(s), '1');
-    // cout << zero << ' ' << one << '\n';
-    int cnt = abs(zero - one);
-    int ans = cnt;
-    if (zero > one)
-    {
-        for (int i = 0; i < s.size(); i++)
-        {
-            if (s[i] == '0')
-            {
-                s.erase(s.begin() + i);
-                // cout << s << ' ';
-                cnt--;
-                // i = 0;
-            }
-        }
-    }
-    else if (one > zero)
-    {
-        for (int i = 0; i < s.size(); i++)
-        {
-            if (s[i] == '1')
-            {
-                s.erase(s.begin() + i);
-                cnt--;
-                // i = 0;
-            }
-        }
-    }
-    cout << s << '\n';
-}
 int32_t main()
 {
     MTK;
     int t;
     cin >> t;
     while (t--)
-        solve();
+    {
+        string s, ss;
+        cin >> s;
+        int n = s.size();
+        int one_cnt = 0, zero_cnt = 0;
+        for (auto c : s)
+        {
+            if (c == '1')
+                one_cnt++;
+            else
+                zero_cnt++;
+        }
+        if (n == 1)
+            cout << 1 << '\n';
+        else if (n == 2)
+        {
+            if (one_cnt == zero_cnt)
+                cout << 0 << '\n';
+            else
+                cout << 2 << '\n';
+        }
+        else if (one_cnt == 1 || zero_cnt == 1)
+            cout << max(one_cnt, zero_cnt) - 1 << '\n';
+        else if (one_cnt == zero_cnt)
+            cout << 0 << '\n';
+        else
+            cout << max(one_cnt, zero_cnt) << '\n';
+
+        // sort(all(s));
+        // ss = s;
+        // reverse(all(s));
+        // int ans = 0;
+        // while (!s.empty() and !ss.empty())
+        // {
+        //    // show(s), show(ss);
+        //     if (!s.empty() and !ss.empty() and (s.front() != ss.front()))
+        //     {
+        //         s.erase(s.begin());
+        //         ss.erase(ss.begin());
+        //     }
+        //     else
+        //     {
+        //         if (!ss.empty())
+        //         {
+        //             ans++;
+        //             ss.erase(ss.begin());
+        //         }
+        //     }
+        // }
+        // cout << ans << '\n';
+    }
+    return 0;
 }

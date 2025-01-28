@@ -19,26 +19,20 @@ int32_t main()
     {
         int n, k;
         cin >> n >> k;
-        int mx = max(n, k);
-        int mn = min(n, k);
-        if (n == mx and n % k == 0)
+        if (n <= k)
         {
-            cout << 1 << '\n';
-            continue;
+            int res = k / n;
+            if (k % n != 0)
+                res++;
+            cout << res << '\n';
         }
-        // if (n == 1 || k == 1)
-        // {
-        //     cout << k << '\n';
-        //     continue;
-        // }
-
-        // show(mx), show(mn);
-        int res = mx / mn;
-        // show(res);
-
-        if (mx % mn != 0 and mx == k)
-            res++;
-        cout << res << '\n';
+        else
+        {
+            if (n % k == 0)
+                cout << 1 << '\n';
+            else
+                cout << 2 << '\n';
+        }
     }
     return 0;
 }
