@@ -25,11 +25,11 @@ int32_t main()
     }
 
     both_way_ride = (n / m) * b;
-    //show(one_way_ride), show(both_way_ride);
-    if (n > m and n % m != 0)
+    // show(one_way_ride), show(both_way_ride);
+    if (n % m != 0)
     {
-        int x = min(a, b);
-        both_way_ride += (n % m) * x;
+        int x = n % m;
+        both_way_ride += min(x * a, b);
     }
     cout << min(one_way_ride, both_way_ride) << '\n';
     return 0;
