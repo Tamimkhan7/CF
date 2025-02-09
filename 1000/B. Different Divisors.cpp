@@ -7,41 +7,72 @@ using namespace std;
 #define mem(a, b) memset(a, b, sizeof(a))
 #define show(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
-#define ll int long long
+#define int long long
 #define mod 1000000007
 
-const int N = 1e6 + 9;
-int divisors[N];
-vector<int> v;
+const int N = 1e3 + 9;
+vector<int> prime;
 
-void divisor()
+void sieve()
 {
-    for (int i = 1; i <= N; i++)
+    vector<bool> is_prime(N, true);
+    for (int i = 2; i < N; i++)
     {
-        for (int j = i; j <= N; j += i)
-            divisors[j]++;
+        if (is_prime[i])
+        {
+            prime.push_back(i);
+            for (int j = i * 2; j < N; j += i)
+                is_prime[j] = false;
+        }
     }
-    for (int i = 1; i <= N; i++)
+}
+
+int d;
+
+bool ok(int n)
+{
+    for (auto p : prime)
     {
-        if (divisors[i] == 4)
-            v.push_back(i);
+        if (p >= d + 1 && n % p == 0)
+            return true;
     }
+    return false;
+}
+
+bool ok2(int n)
+{
+    int cnt = 0;
+    for (int i = 1; i * i <= n; i++)
+    {
+        if (n % i == 0)
+        {
+            cnt += (i == n / i) ? 1 : 2; // Counting divisors
+        }
+        if (cnt >= 4) // Early exit condition
+            return true;
+    }
+    return false;
 }
 
 int32_t main()
 {
     MTK;
-    divisor();
-    // for (auto x : v)
-    //     cout << x << ' ';
-    // cout << '\n';
-    // cout << v.size() << '\n';
+    sieve();
+
     int t;
     cin >> t;
     while (t--)
     {
-        int d;
         cin >> d;
+        for (int i = d + 1;; i++) // Start from `d + 1`
+        {
+            if (ok(i) && ok2(i))
+            {
+                cout << i << '\n';
+                break;
+            }
+        }
     }
+
     return 0;
 }
