@@ -1,56 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ordered_set tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 #define MTK                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0);
 typedef long long int ll;
-#define all(x) x.begin(), x.end()
-#define mod 1000000007
+
 void solve()
 {
-    int n, mx;
+    int n;
     cin >> n;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    int flag = 0, cnt = 0;
-    while (1)
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+
+    for (int i = 2; i < n; i++)
     {
-        mx = *max_element(next(v.begin()), prev(v.end()));
-        if (mx == 0)
-            break;
-        auto it = find(next(v.begin()), prev(v.end()), mx);
-        int x = it - v.begin();
-        int res = v[x] / 2;
-        if (v[x - 1] >= res and v[x + 1] >= res and v[x] > 1)
+        if (a[i - 1] > 0 and a[i] >= 2 and a[i + 1] > 0)
         {
-            v[x - 1] -= res;
-            v[x + 1] -= res;
-            v[x] /= 2;
-            cnt++;
+            int mid = min({a[i - 1], a[i + 1], a[i] / 2});
+            a[i - 1] -= mid;
+            a[i + 1] -= mid;
+            a[i] -= mid * 2;
         }
-        else
+    }
+    bool ok = true;
+    for (int i = 1; i <= n; i++)
+    {
+        if (a[i] != 0)
         {
-            flag = 1;
+            ok = false;
             break;
         }
     }
-    // mx = *max_element(next(v.begin()), prev(v.end()));
-    int ami = 0, tumi = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] == 0 || v[i] == 1)
-            ami++;
-        if (v[i] == 0)
-            tumi++;
-    }
-    if ((ami == n and cnt != 0) || (tumi == n))
-        cout << "YES" << '\n';
-    else
-        cout << "NO" << '\n';
+    cout << (ok ? "YES\n" : "NO\n");
 }
+
 int32_t main()
 {
     MTK;
