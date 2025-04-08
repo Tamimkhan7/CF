@@ -22,7 +22,7 @@ int32_t main()
 
         ll a = n / x, b = n / y;
         ll lcm = 1LL * x * y / __gcd(x, y);
-        //show(lcm);
+        // show(lcm);
         ll common = n / lcm;
         a -= common, b -= common;
         ll sum_x = 0,
