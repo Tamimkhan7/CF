@@ -18,20 +18,14 @@ int32_t main()
     vector<int> v(n);
     for (int i = 0; i < n; i++)
         cin >> v[i];
+
     if (is_sorted(all(v)))
     {
         cout << "yes\n";
-        cout << 1 << ' ' << 1 << '\n';
+        cout << 1 << ' ' << 1 << "\n";
         return 0;
     }
-    int l = 1, r = n - 1;
-    for (int i = n - 1; i > 0; i--)
-    {
-        if (v[i] >= v[i - 1])
-            r--;
-        else
-            break;
-    }
+    int l = 0, r = n - 1;
     for (int i = 0; i < n - 1; i++)
     {
         if (v[i] <= v[i + 1])
@@ -39,20 +33,26 @@ int32_t main()
         else
             break;
     }
+    for (int i = n - 1; i > 0; i--)
+    {
+        if (v[i] >= v[i - 1])
+            r--;
+        else
+            break;
+    }
+    // show(l), show(r);
+    reverse(v.begin() + l, v.begin() + r + 1);
 
-    show(l), show(r);
-    reverse(v.begin() + l - 1, v.begin() + r);
-    //  for (auto x : v)
-    //      cout << x << ' ';
-    //  cout << '\n';
+    // for (int i = 0; i < n; i++)
+    //     cout << v[i] << ' ';
+    // cout << '\n';
+
     if (is_sorted(all(v)))
     {
         cout << "yes\n";
-        cout << l << ' ' << r << '\n';
+        cout << l + 1 << ' ' << r + 1 << '\n';
         return 0;
     }
-    else
-        cout << "no\n";
-
+    cout << "no\n";
     return 0;
 }
