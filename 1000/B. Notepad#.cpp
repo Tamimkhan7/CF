@@ -20,7 +20,7 @@ void solve()
         ss = "";
         ss = s[i];
         ss += s[i + 1];
-        //show(i), show(ss);
+        // show(i), show(ss);
         if (i + 2 < n and s[i + 1] == s[i + 2] and s[i] == s[i + 2])
             i++;
         if (mp.count(ss) > 0)
