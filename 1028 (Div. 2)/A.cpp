@@ -5,7 +5,7 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0);
 #define mem(a, b) memset(a, b, sizeof(a))
-#define trace(x) cout << #x << ' ' << x << endl
+#define show(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
 #define ll int long long
 #define mod 1000000007
@@ -17,15 +17,15 @@ int32_t main()
     cin >> t;
     while (t--)
     {
-        int s;
-        cin >> s;
-        int ans = 0;
-        while (s > 0)
-        {
-            ans += s % 10;
-            s /= 10;
-        }
-        cout << ans << '\n';
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+
+        int ac = min(a, c);
+        int bd = min(b, d);
+        if (ac >= bd)
+            cout << "Gellyfish\n";
+        else
+            cout << "Flower\n";
     }
     return 0;
 }

@@ -1,1 +1,0 @@
-{"name":"Local: A","url":"/home/tamim/Desktop/CF/1100 /A. Laptops.cpp","tests":[{"id":1739774578985,"input":"2\n1 2\n2 1\n","output":""},{"id":1739774598791,"input":"3\n2 2\n3 3\n1 1","output":"Poor Alex\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/tamim/Desktop/CF/1100 /A. Laptops.cpp","group":"local","local":true}
