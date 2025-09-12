@@ -7,25 +7,9 @@ using namespace std;
 #define mem(a, b) memset(a, b, sizeof(a))
 #define show(x) cout << #x << ' ' << x << endl
 #define all(x) (x).begin(), (x).end()
-#define int int long long
+#define ll int long long
 #define mod 1000000007
 
-void solve()
-{
-    int n, k;
-    cin >> n >> k;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    for (int i = 0; i < n; i++)
-    {
-        int curr = v[i] % (k + 1);
-        v[i] += curr * k;
-    }
-    for (auto x : v)
-        cout << x << ' ';
-    cout << '\n';
-}
 int32_t main()
 {
     MTK;
@@ -33,6 +17,19 @@ int32_t main()
     int t;
     cin >> t;
     while (t--)
-        solve();
+    {
+        int n;
+        cin >> n;
+        vector<int> v(n);
+        for (int i = 0; i < n; i++)
+            cin >> v[i];
+        sort(all(v));
+        reverse(all(v));
+        ll ans = 0;
+        for (int i = 0; i < n; i += 2)
+            ans += v[i];
+
+        cout << ans << '\n';
+    }
     return 0;
 }
