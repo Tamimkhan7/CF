@@ -13,86 +13,40 @@ using namespace std;
 int32_t main()
 {
     MTK;
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    int value;
-    cin >> value;
-    sort(v.begin(), v.end());
-    // for(auto x: v)cout<<x<<' ';
-    // cout<<'\n';
-    map<int, int> mp;
-    for (auto x : v)
-    {
-        int r = ((x % value) + value) % value;
-        mp[r]++;
-    }
-    // for(auto [x,y]: mp)cout<<x<<' '<<y<<'\n';
+    string s;
+    int k;
+    cin >> s >> k;
     int ans = 0;
-    for (int i = 0; i < n; i++)
+    set<char> se;
+    bool ok = false;
+    for (auto c : s)
     {
-        int x = ans % value;
-        show(x);
-        if (mp[x] > 0)
+        if (se.find(c) == se.end())
+            se.insert(c);
+        else if (se.find(c) != se.end() and !ok)
         {
-            mp[x]--;
-            ans++;
-            show(ans);
+            for (char cc = 'a'; cc <= 'z'; cc++)
+            {
+                if (se.find(cc) == se.end())
+                {
+                    se.insert(cc);
+                    break;
+                }
+            }
+            ok = true;
         }
-        else
-            break;
+
+        show(se.size());
+        show(c);
+        if (se.size() == k)
+        {
+            ans++;
+            se.clear();
+        }
+        show(ans);
+        cout << '\n';
     }
-    show(ans);
-
-    // unordered_map<ll, bool> vis;
-    // for (int i = 0; i < n; i++)
-    // {
-    //     int x = v[i];
-    //     show(x);
-    //     if (x < 0)
-    //     {
-    //         while (x < 0)
-    //         {
-    //             x += value;
-    //             if (mp.count(x) > 0)
-    //                 break;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (!vis[x])
-    //         {
-    //             vis[x] = true;
-    //             while (x > 0 and x - value >= 0)
-    //             {
-    //                 x -= value;
-    //                 if (mp.count(x) > 0)
-    //                     break;
-    //             }
-    //         }
-    //         else
-    //         {
-    //             x += value;
-    //             while (mp.count(x) > 0)
-    //                 x += value;
-    //             mp[x]++;
-    //         }
-    //     }
-    //     show(x);
-    //     cout << '\n';
-    // }
-
-    // int ans = v.size() + 1;
-    // for (int i = 0; i <= (int)v.size(); i++)
-    // {
-    //     if (mp.count(i) == 0)
-    //     {
-    //         ans = i;
-    //         break;
-    //     }
-    // }
-    // cout << ans << '\n';
+    if (se.size() > 0)
+        ans++;
     return 0;
 }
